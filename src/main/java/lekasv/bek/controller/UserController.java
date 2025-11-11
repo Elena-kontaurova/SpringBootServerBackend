@@ -16,37 +16,37 @@ public class UserController {
 
     @GetMapping
     public List<User> getAll() {
-        return userService.findAll();
+        return userService.getAll();
     }
 
     @GetMapping("/name/{name}")
     public User getAllByName(@PathVariable String name) {
-        return userService.findByName(name);
+        return userService.getByName(name);
     }
 
     @GetMapping("/{id_user}")
     public User getById(@PathVariable int id_user) {
-        return userService.findById(id_user);
+        return userService.getById(id_user);
     }
 
     @GetMapping("/lastName/{last_name}")
     public List<User> getLastByName(@PathVariable String last_name) {
-        return userService.findByLastName(last_name);
+        return userService.getByLastName(last_name);
     }
 
     @GetMapping("/age/{age}")
     public List<User> getByAge(@PathVariable int age) {
-        return userService.findByAge(age);
+        return userService.getByAge(age);
     }
 
     @PostMapping()
     public User postUser(@RequestBody User user) {
-        return userService.save(user);
+        return userService.create(user);
     }
 
     @PutMapping("/{id_user}")
     public User puyUser(@RequestBody User user, @PathVariable int id_user) {
-        return userService.save(user, id_user);
+        return userService.update(user, id_user);
     }
 
     @DeleteMapping("/{id_user}")

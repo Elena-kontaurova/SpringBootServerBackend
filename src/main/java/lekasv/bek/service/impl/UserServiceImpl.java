@@ -14,37 +14,61 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     @Override
-    public List<User> findAll() {
+    public List<User> getAll() {
         return userRepository.findAll();
     }
 
     @Override
-    public User findByName(String name) {
+    public User getByName(String name) {
         return userRepository.findByName(name);
     }
 
     @Override
-    public User findById(int id_user) {
+    public User getById(int id_user) {
         return userRepository.findById(id_user).get();
     }
 
     @Override
-    public List<User> findByLastName(String last_name) {
+    public List<User> getByLastName(String last_name) {
         return userRepository.findByLastName(last_name);
     }
 
     @Override
-    public List<User> findByAge(int age) {
+    public List<User> getByAge(int age) {
         return userRepository.findByAge(age);
     }
 
     @Override
-    public User save(User user) {
+    public User create(User user) {
+        if (user.getName() == null || user.getName().isEmpty()) {
+            throw new IllegalArgumentException("Name is null");
+        }
+        if (user.getLastName() == null || user.getLastName().isEmpty()) {
+            throw new IllegalArgumentException("LastName is null");
+        }
+        if (user.getAge() < 0 || user.getAge() > 100) {
+            throw new IllegalArgumentException("Age must be between 0 and 100");
+        }
+        if (user.getRole() == null ) {
+            throw new IllegalArgumentException("Role is null");
+        }
         return userRepository.save(user);
     }
 
     @Override
-    public User save(User user, int id_user) {
+    public User update(User user, int id_user) {
+        if (user.getName() == null || user.getName().isEmpty()) {
+            throw new IllegalArgumentException("Name is null");
+        }
+        if (user.getLastName() == null || user.getLastName().isEmpty()) {
+            throw new IllegalArgumentException("LastName is null");
+        }
+        if (user.getAge() < 0 || user.getAge() > 100) {
+            throw new IllegalArgumentException("Age must be between 0 and 100");
+        }
+        if (user.getRole() == null ) {
+            throw new IllegalArgumentException("Role is null");
+        }
         User users = userRepository.findById(id_user).get();
         users.setName(user.getName());
         users.setAge(user.getAge());

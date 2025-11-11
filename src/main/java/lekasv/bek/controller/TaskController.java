@@ -2,9 +2,7 @@ package lekasv.bek.controller;
 
 import lekasv.bek.Enum.TaskStatucEnum;
 import lekasv.bek.model.Task;
-import lekasv.bek.model.User;
-import lekasv.bek.repository.RoleRepository;
-import lekasv.bek.repository.TaskRepository;
+import lekasv.bek.service.api.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,45 +12,45 @@ import java.util.List;
 @RestController
 @RequestMapping("/task")
 public class TaskController {
-    private final TaskRepository taskRepository;
+    private final TaskService taskService;
+
     @GetMapping
-    public List<Task> findAll() {
-        return taskRepository.findAll();
+    public List<Task> getAll() {
+        return taskService.getAll();
     }
+
     @GetMapping("/description/{description}")
-    public List<Task> findByDescription(@PathVariable String description) {
-        return taskRepository.findByDescription(description);
+    public List<Task> getByDescription(@PathVariable String description) {
+        return taskService.getByDescription(description);
     }
+
     @GetMapping("/name/{name}")
-    public List<Task> findByName(@PathVariable String name) {
-        return taskRepository.findByName(name);
+    public List<Task> getByName(@PathVariable String name) {
+        return taskService.getByName(name);
     }
+
     @GetMapping("/status/{status}")
-    public List<Task> findByStatus(@PathVariable TaskStatucEnum status) {
-        return taskRepository.findByStatus(status);
+    public List<Task> getByStatus(@PathVariable TaskStatucEnum status) {
+        return taskService.getByStatus(status);
     }
+
     @GetMapping("/user/{userId}")
-    public List<Task> findByUser(@PathVariable Integer userId) {
-        return taskRepository.findByUserId(userId);
+    public List<Task> getByUser(@PathVariable Integer userId) {
+        return taskService.getByUserId(userId);
     }
 
     @PostMapping
-    public Task save(@RequestBody Task task) {
-        return taskRepository.save(task);
+    public Task create(@RequestBody Task task) {
+        return taskService.create(task);
     }
 
     @PutMapping("/update/{task_id}")
     public Task update(@PathVariable Integer task_id, @RequestBody Task task) {
-        Task tasks = taskRepository.findById(task_id).get();
-        tasks.setName(task.getName());
-        tasks.setDescription(task.getDescription());
-        tasks.setStatus(task.getStatus());
-        tasks.setUser(task.getUser());
-        return taskRepository.save(tasks);
+        return taskService.update(task_id, task);
     }
 
-    @DeleteMapping("/del/{tast_id}")
-    public void delete(@PathVariable Integer tast_id) {
-        taskRepository.deleteById(tast_id);
+    @DeleteMapping("/del/{task_id}")
+    public void delete(@PathVariable Integer task_id) {
+        taskService.deleteById(task_id);
     }
 }
