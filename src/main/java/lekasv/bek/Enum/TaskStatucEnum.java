@@ -1,4 +1,7 @@
 package lekasv.bek.Enum;
 
-public class TaskStatucEnum {
+public enum TaskStatucEnum {
+    NOT_COMPLETED,
+    IN_PROGRESS,
+    COMPLETED,
 }

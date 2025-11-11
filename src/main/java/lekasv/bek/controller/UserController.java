@@ -1,9 +1,8 @@
 package lekasv.bek.controller;
 
 import lekasv.bek.model.User;
-import lekasv.bek.model.Xyu;
-import lekasv.bek.repository.UserRepository;
 
+import lekasv.bek.service.api.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,50 +12,45 @@ import java.util.List;
 @RequestMapping("/user")
 @RequiredArgsConstructor
 public class UserController {
-    private final UserRepository userRepository;
+    private final UserService userService;
 
     @GetMapping
     public List<User> getAll() {
-        return userRepository.findAll();
+        return userService.findAll();
     }
 
     @GetMapping("/name/{name}")
     public User getAllByName(@PathVariable String name) {
-        return userRepository.findByName(name);
+        return userService.findByName(name);
     }
 
     @GetMapping("/{id_user}")
     public User getById(@PathVariable int id_user) {
-        return userRepository.findById(id_user).get();
+        return userService.findById(id_user);
     }
 
     @GetMapping("/lastName/{last_name}")
     public List<User> getLastByName(@PathVariable String last_name) {
-        return userRepository.findByLastName(last_name);
+        return userService.findByLastName(last_name);
     }
 
     @GetMapping("/age/{age}")
     public List<User> getByAge(@PathVariable int age) {
-        return userRepository.findByAge(age);
+        return userService.findByAge(age);
     }
 
     @PostMapping()
     public User postUser(@RequestBody User user) {
-        return userRepository.save(user);
+        return userService.save(user);
     }
 
     @PutMapping("/{id_user}")
     public User puyUser(@RequestBody User user, @PathVariable int id_user) {
-        User users = userRepository.findById(id_user).get();
-        users.setName(user.getName());
-        users.setAge(user.getAge());
-        users.setActive(user.getActive());
-        return userRepository.save(users);
+        return userService.save(user, id_user);
     }
 
     @DeleteMapping("/{id_user}")
     public void deleteUser(@PathVariable int id_user) {
-        userRepository.deleteById(id_user);
+        userService.deleteById(id_user);
     }
-
 }

@@ -35,4 +35,9 @@ public class RoleController {
     public void deleteRole(@PathVariable int id_role) {
         roleRepository.deleteById(id_role);
     }
+
+    @GetMapping("/rol/{role}")
+    public List<Role> findAllByRole(@PathVariable String role) {
+        return roleRepository.findByRole(role);
+    }
 }
