@@ -9,6 +9,5 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 public class CreateRoleRequest {
-    private String name;
-    private int age;
+    private String role;
 }

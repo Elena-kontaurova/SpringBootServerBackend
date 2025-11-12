@@ -1,5 +1,9 @@
 package lekasv.bek.service.impl;
 
+import lekasv.bek.dto.role.CreateRoleRequest;
+import lekasv.bek.dto.role.RoleResponse;
+import lekasv.bek.dto.role.UpdateRoleRequest;
+import lekasv.bek.mapper.RoleMapper;
 import lekasv.bek.model.Role;
 import lekasv.bek.repository.RoleRepository;
 import lekasv.bek.service.api.RoleService;
@@ -11,28 +15,35 @@ import java.util.List;
 @Service
 public class RoleServiceImpl implements RoleService {
     private final RoleRepository roleRepository;
+    private final RoleMapper roleMapper;
 
     @Override
-    public List<Role> getAll() {
-        return roleRepository.findAll();
+    public List<RoleResponse> getAll() {
+        return roleRepository.findAll()
+                .stream()
+                .map(roleMapper::toRoleResponse)
+                .toList();
     }
 
     @Override
-    public Role create(Role role) {
-        if (role.getRole() == null || role.getRole().isEmpty()) {
+    public RoleResponse create(CreateRoleRequest request) {
+        if (request.getRole() == null || request.getRole().isEmpty()) {
             throw new IllegalArgumentException("Role is null");
         }
-        return roleRepository.save(role);
+        Role role = roleMapper.fromCreateRoleRequest(request);
+        roleRepository.save(role);
+        return roleMapper.toRoleResponse(role);
     }
 
     @Override
-    public Role update(Role role, int id_role) {
-        if (role.getRole() == null || role.getRole().isEmpty()) {
+    public RoleResponse update(UpdateRoleRequest request, int id_role) {
+        if (request.getRole() == null || request.getRole().isEmpty()) {
             throw new IllegalArgumentException("Role is null");
         }
         Role roles = roleRepository.findById(id_role).get();
-        roles.setRole(role.getRole());
-        return roleRepository.save(roles);
+        roles.setRole(request.getRole());
+        roleRepository.save(roles);
+        return roleMapper.toRoleResponse(roles);
     }
 
     @Override
@@ -41,7 +52,10 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public List<Role> getByRole(String role) {
-        return roleRepository.findByRole(role);
+    public List<RoleResponse> getByRole(String role) {
+        return roleRepository.findByRole(role)
+                .stream()
+                .map(roleMapper::toRoleResponse)
+                .toList();
     }
 }

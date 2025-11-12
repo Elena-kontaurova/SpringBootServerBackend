@@ -1,8 +1,11 @@
 package lekasv.bek.service.impl;
 
+import lekasv.bek.dto.xyu.CreateXyuRequest;
+import lekasv.bek.dto.xyu.UpdateXyuRequest;
+import lekasv.bek.dto.xyu.XyuResponse;
+import lekasv.bek.mapper.XyuMapper;
 import lekasv.bek.model.Xyu;
 import lekasv.bek.repository.XyuRepository;
-import lekasv.bek.service.api.UserService;
 import lekasv.bek.service.api.XyuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,45 +16,54 @@ import java.util.List;
 @Service
 public class XyuServiceImpl implements XyuService {
     private final XyuRepository xyuRepository;
+    private final XyuMapper xyuMapper;
 
     @Override
-    public List<Xyu> getAll() {
-        return xyuRepository.findAll();
+    public List<XyuResponse> getAll() {
+        return xyuRepository.findAll()
+                .stream()
+                .map(xyuMapper::toXyuResponse)
+                .toList();
     }
 
     @Override
-    public Xyu getByName(String name) {
-        return xyuRepository.findByName(name);
+    public List<XyuResponse> getByName(String name) {
+        return xyuRepository.findByName(name)
+                .stream()
+                .map(xyuMapper::toXyuResponse)
+                .toList();
     }
 
     @Override
-    public Xyu getById(int id_xyu) {
-        return xyuRepository.findById(id_xyu).get();
+    public XyuResponse getById(int id_xyu) {
+        return xyuMapper.toXyuResponse(xyuRepository.findById(id_xyu).get());
     }
 
     @Override
-    public Xyu create(Xyu xyu) {
-        if (xyu.getName() == null || xyu.getName().isEmpty()) {
+    public XyuResponse create(CreateXyuRequest request) {
+        if (request.getName() == null || request.getName().isEmpty()) {
             throw new IllegalArgumentException("Xyu name is null or empty");
         }
-        if (xyu.getAge() < 0 || xyu.getAge() > 100) {
+        if (request.getAge() < 0 || request.getAge() > 100) {
             throw new IllegalArgumentException("Xyu age is out of range");
         }
-        return xyuRepository.save(xyu);
+        Xyu xyu = xyuMapper.fromCreateXyuRequest(request);
+       xyuRepository.save(xyu);
+       return xyuMapper.toXyuResponse(xyu);
     }
 
     @Override
-    public Xyu update(Xyu xyu, int id_xyu) {
-        if (xyu.getName() == null || xyu.getName().isEmpty()) {
+    public XyuResponse update(UpdateXyuRequest request, int id_xyu) {
+        if (request.getName() == null || request.getName().isEmpty()) {
             throw new IllegalArgumentException("Xyu name is null or empty");
         }
-        if (xyu.getAge() < 0 || xyu.getAge() > 100) {
+        if (request.getAge() < 0 || request.getAge() > 100) {
             throw new IllegalArgumentException("Xyu age is out of range");
         }
-        Xyu xx = xyuRepository.findById(id_xyu).get();
-        xx.setName(xyu.getName());
-        xx.setAge(xyu.getAge());
-        return xyuRepository.save(xx);
+        Xyu xyu = xyuRepository.findById(id_xyu).get();
+        xyuMapper.fromUpdateXyuRequest(request, xyu);
+        xyuRepository.save(xyu);
+        return xyuMapper.toXyuResponse(xyu);
     }
 
     @Override

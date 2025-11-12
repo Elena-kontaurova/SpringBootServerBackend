@@ -7,10 +7,11 @@ import lombok.extern.jackson.Jacksonized;
 @Getter
 @Builder
 @Jacksonized
-public class CreateUserRequest {
+public class UserResponse {
+    private int id;
     private String name;
     private String lastName;
-    private Integer age;
+    private int age;
     private Boolean active;
     private Integer roleId;
 }

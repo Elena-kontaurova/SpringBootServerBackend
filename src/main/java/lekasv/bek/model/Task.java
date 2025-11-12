@@ -1,14 +1,10 @@
 package lekasv.bek.model;
 
 import jakarta.persistence.*;
-import lekasv.bek.Enum.TaskStatucEnum;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import lekasv.bek.enums.TaskStatucEnum;
+import lombok.*;
 
+@Builder
 @Getter
 @Setter
 @AllArgsConstructor
@@ -24,7 +20,5 @@ public class Task {
     @Enumerated(EnumType.STRING)
     @Column(name="status")
     private TaskStatucEnum status = TaskStatucEnum.NOT_COMPLETED;
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    private Integer userId;
 }

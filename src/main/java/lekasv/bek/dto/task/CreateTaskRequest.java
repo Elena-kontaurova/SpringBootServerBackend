@@ -1,6 +1,6 @@
 package lekasv.bek.dto.task;
 
-import lekasv.bek.Enum.TaskStatucEnum;
+import lekasv.bek.enums.TaskStatucEnum;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;
@@ -12,5 +12,5 @@ public class CreateTaskRequest {
     private String name;
     private String description;
     private TaskStatucEnum status;
-    private int userId;
+    private Integer userId;
 }

@@ -1,6 +1,9 @@
 package lekasv.bek.controller;
 
-import lekasv.bek.Enum.TaskStatucEnum;
+import lekasv.bek.dto.task.TaskResponse;
+import lekasv.bek.enums.TaskStatucEnum;
+import lekasv.bek.dto.task.CreateTaskRequest;
+import lekasv.bek.dto.task.UpdateTaskRequest;
 import lekasv.bek.model.Task;
 import lekasv.bek.service.api.TaskService;
 import lombok.RequiredArgsConstructor;
@@ -15,38 +18,38 @@ public class TaskController {
     private final TaskService taskService;
 
     @GetMapping
-    public List<Task> getAll() {
+    public List<TaskResponse> getAll() {
         return taskService.getAll();
     }
 
     @GetMapping("/description/{description}")
-    public List<Task> getByDescription(@PathVariable String description) {
+    public List<TaskResponse> getByDescription(@PathVariable String description) {
         return taskService.getByDescription(description);
     }
 
     @GetMapping("/name/{name}")
-    public List<Task> getByName(@PathVariable String name) {
+    public List<TaskResponse> getByName(@PathVariable String name) {
         return taskService.getByName(name);
     }
 
     @GetMapping("/status/{status}")
-    public List<Task> getByStatus(@PathVariable TaskStatucEnum status) {
+    public List<TaskResponse> getByStatus(@PathVariable TaskStatucEnum status) {
         return taskService.getByStatus(status);
     }
 
     @GetMapping("/user/{userId}")
-    public List<Task> getByUser(@PathVariable Integer userId) {
+    public List<TaskResponse> getByUser(@PathVariable Integer userId) {
         return taskService.getByUserId(userId);
     }
 
     @PostMapping
-    public Task create(@RequestBody Task task) {
-        return taskService.create(task);
+    public TaskResponse create(@RequestBody CreateTaskRequest request) {
+        return taskService.create(request);
     }
 
     @PutMapping("/update/{task_id}")
-    public Task update(@PathVariable Integer task_id, @RequestBody Task task) {
-        return taskService.update(task_id, task);
+    public TaskResponse update(@PathVariable Integer task_id, @RequestBody UpdateTaskRequest request) {
+        return taskService.update(task_id, request);
     }
 
     @DeleteMapping("/del/{task_id}")

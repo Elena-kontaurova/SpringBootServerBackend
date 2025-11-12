@@ -1,5 +1,8 @@
 package lekasv.bek.controller;
 
+import lekasv.bek.dto.xyu.CreateXyuRequest;
+import lekasv.bek.dto.xyu.UpdateXyuRequest;
+import lekasv.bek.dto.xyu.XyuResponse;
 import lekasv.bek.model.Xyu;
 import lekasv.bek.service.api.XyuService;
 import lombok.RequiredArgsConstructor;
@@ -14,28 +17,28 @@ public class XyuController {
     private final XyuService xyuService;
 
     @GetMapping
-    public List<Xyu> getAll() {
+    public List<XyuResponse> getAll() {
         return xyuService.getAll();
     }
 
     @GetMapping("/name/{name}")
-    public Xyu getByName(@PathVariable String name) {
+    public List<XyuResponse> getByName(@PathVariable String name) {
         return xyuService.getByName(name);
     }
 
     @GetMapping("/{id_xyu}")
-    public Xyu getById(@PathVariable int id_xyu) {
+    public XyuResponse getById(@PathVariable int id_xyu) {
         return xyuService.getById(id_xyu);
     }
 
     @PostMapping()
-    public Xyu postXyu(@RequestBody Xyu xyu) {
-        return xyuService.create(xyu);
+    public XyuResponse postXyu(@RequestBody CreateXyuRequest request) {
+        return xyuService.create(request);
     }
 
     @PutMapping("/{id_xyu}")
-    public Xyu putXyu(@RequestBody Xyu xyu, @PathVariable int id_xyu) {
-        return xyuService.update(xyu, id_xyu);
+    public XyuResponse putXyu(@RequestBody UpdateXyuRequest request, @PathVariable int id_xyu) {
+        return xyuService.update(request, id_xyu);
     }
 
     @DeleteMapping("/{id_xyu}")

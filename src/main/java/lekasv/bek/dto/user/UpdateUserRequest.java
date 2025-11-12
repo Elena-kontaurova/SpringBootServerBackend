@@ -1,5 +1,6 @@
 package lekasv.bek.dto.user;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;
@@ -10,7 +11,7 @@ import lombok.extern.jackson.Jacksonized;
 public class UpdateUserRequest {
     private String name;
     private String lastName;
-    private int age;
+    private Integer age;
     private Boolean active;
-    private int roleId;
+    private Integer roleId;
 }

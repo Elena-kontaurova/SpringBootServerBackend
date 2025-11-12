@@ -1,5 +1,8 @@
 package lekasv.bek.controller;
 
+import lekasv.bek.dto.user.CreateUserRequest;
+import lekasv.bek.dto.user.UpdateUserRequest;
+import lekasv.bek.dto.user.UserResponse;
 import lekasv.bek.model.User;
 
 import lekasv.bek.service.api.UserService;
@@ -15,38 +18,38 @@ public class UserController {
     private final UserService userService;
 
     @GetMapping
-    public List<User> getAll() {
+    public List<UserResponse> getAll() {
         return userService.getAll();
     }
 
     @GetMapping("/name/{name}")
-    public User getAllByName(@PathVariable String name) {
+    public List<UserResponse> getAllByName(@PathVariable String name) {
         return userService.getByName(name);
     }
 
     @GetMapping("/{id_user}")
-    public User getById(@PathVariable int id_user) {
+    public UserResponse getById(@PathVariable int id_user) {
         return userService.getById(id_user);
     }
 
     @GetMapping("/lastName/{last_name}")
-    public List<User> getLastByName(@PathVariable String last_name) {
+    public List<UserResponse> getLastByName(@PathVariable String last_name) {
         return userService.getByLastName(last_name);
     }
 
     @GetMapping("/age/{age}")
-    public List<User> getByAge(@PathVariable int age) {
+    public List<UserResponse> getByAge(@PathVariable int age) {
         return userService.getByAge(age);
     }
 
     @PostMapping()
-    public User postUser(@RequestBody User user) {
-        return userService.create(user);
+    public UserResponse postUser(@RequestBody CreateUserRequest request) {
+        return userService.create(request);
     }
 
     @PutMapping("/{id_user}")
-    public User puyUser(@RequestBody User user, @PathVariable int id_user) {
-        return userService.update(user, id_user);
+    public UserResponse puyUser(@RequestBody UpdateUserRequest request, @PathVariable int id_user) {
+        return userService.update(request, id_user);
     }
 
     @DeleteMapping("/{id_user}")

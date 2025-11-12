@@ -1,6 +1,12 @@
 package lekasv.bek.service.impl;
 
+import lekasv.bek.dto.user.CreateUserRequest;
+import lekasv.bek.dto.user.UpdateUserRequest;
+import lekasv.bek.dto.user.UserResponse;
+import lekasv.bek.mapper.UserMapper;
 import lekasv.bek.model.User;
+import lekasv.bek.repository.RoleRepository;
+import lekasv.bek.repository.TaskRepository;
 import lekasv.bek.repository.UserRepository;
 import lekasv.bek.service.api.UserService;
 import lombok.RequiredArgsConstructor;
@@ -12,68 +18,88 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final UserMapper userMapper;
 
     @Override
-    public List<User> getAll() {
-        return userRepository.findAll();
+    public List<UserResponse> getAll() {
+        return userRepository.findAll()
+                .stream()
+                .map(userMapper::toUserResponse)
+                .toList();
     }
 
     @Override
-    public User getByName(String name) {
-        return userRepository.findByName(name);
+    public List<UserResponse> getByName(String name) {
+        return userRepository.findByName(name)
+                .stream()
+                .map(userMapper::toUserResponse)
+                .toList();
     }
 
     @Override
-    public User getById(int id_user) {
-        return userRepository.findById(id_user).get();
+    public UserResponse getById(int id_user) {
+        return userMapper.toUserResponse(userRepository.findById(id_user).get());
     }
 
     @Override
-    public List<User> getByLastName(String last_name) {
-        return userRepository.findByLastName(last_name);
+    public List<UserResponse> getByLastName(String last_name) {
+        return userRepository.findByLastName(last_name)
+                .stream()
+                .map(userMapper::toUserResponse)
+                .toList();
     }
 
     @Override
-    public List<User> getByAge(int age) {
-        return userRepository.findByAge(age);
+    public List<UserResponse> getByAge(int age) {
+        return userRepository.findByAge(age)
+                .stream()
+                .map(userMapper::toUserResponse)
+                .toList();
     }
 
     @Override
-    public User create(User user) {
-        if (user.getName() == null || user.getName().isEmpty()) {
+    public UserResponse create(CreateUserRequest request) {
+        if (request.getName() == null || request.getName().isEmpty()) {
             throw new IllegalArgumentException("Name is null");
         }
-        if (user.getLastName() == null || user.getLastName().isEmpty()) {
+        if (request.getLastName() == null || request.getLastName().isEmpty()) {
             throw new IllegalArgumentException("LastName is null");
         }
-        if (user.getAge() < 0 || user.getAge() > 100) {
+        if (request.getAge() < 0 || request.getAge() > 100) {
             throw new IllegalArgumentException("Age must be between 0 and 100");
         }
-        if (user.getRole() == null ) {
+        if (request.getRoleId() == null ) {
             throw new IllegalArgumentException("Role is null");
         }
-        return userRepository.save(user);
+        if (!roleRepository.existsById(request.getRoleId())) {
+            throw new IllegalArgumentException("Role not found");
+        }
+        User user = userMapper.fromCreateUserRequest(request);
+        userRepository.save(user);
+        return userMapper.toUserResponse(user);
     }
 
     @Override
-    public User update(User user, int id_user) {
-        if (user.getName() == null || user.getName().isEmpty()) {
+    public UserResponse update(UpdateUserRequest request, int id_user) {
+        if (request.getName() == null || request.getName().isEmpty()) {
             throw new IllegalArgumentException("Name is null");
         }
-        if (user.getLastName() == null || user.getLastName().isEmpty()) {
+        if (request.getLastName() == null || request.getLastName().isEmpty()) {
             throw new IllegalArgumentException("LastName is null");
         }
-        if (user.getAge() < 0 || user.getAge() > 100) {
+        if (request.getAge() < 0 || request.getAge() > 100) {
             throw new IllegalArgumentException("Age must be between 0 and 100");
         }
-        if (user.getRole() == null ) {
+        if (request.getRoleId() == null ) {
             throw new IllegalArgumentException("Role is null");
         }
+        if (!roleRepository.existsById(request.getRoleId())) {
+            throw new IllegalArgumentException("Role not found");        }
         User users = userRepository.findById(id_user).get();
-        users.setName(user.getName());
-        users.setAge(user.getAge());
-        users.setActive(user.getActive());
-        return userRepository.save(users);
+        userMapper.fromUpdateUserRequest(request, users);
+        userRepository.save(users);
+        return userMapper.toUserResponse(users);
     }
 
     @Override

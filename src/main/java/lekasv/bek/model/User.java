@@ -1,11 +1,9 @@
 package lekasv.bek.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+@Builder
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,7 +18,5 @@ public class User {
     private String lastName;
     private int age;
     private Boolean active;
-    @ManyToOne
-    @JoinColumn(name = "role_id")
-    private Role role;
+    private Integer roleId;
 }

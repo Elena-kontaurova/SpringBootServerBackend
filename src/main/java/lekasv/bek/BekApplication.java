@@ -10,4 +10,6 @@ public class BekApplication {
         SpringApplication.run(BekApplication.class, args);
     }
 
+
+
 }

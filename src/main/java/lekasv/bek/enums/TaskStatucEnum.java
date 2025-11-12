@@ -1,4 +1,4 @@
-package lekasv.bek.Enum;
+package lekasv.bek.enums;
 
 public enum TaskStatucEnum {
     NOT_COMPLETED,
