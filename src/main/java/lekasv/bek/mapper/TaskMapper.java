@@ -12,6 +12,8 @@ import java.lang.annotation.Target;
 @Mapper(componentModel = "spring")
 public interface TaskMapper {
     Task fromCreateTaskRequest(CreateTaskRequest request);
+
     void fromUpdateTaskRequest(UpdateTaskRequest request, @MappingTarget Task task);
+
     TaskResponse toTaskResponse(Task task);
 }
