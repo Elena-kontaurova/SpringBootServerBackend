@@ -1,4 +1,48 @@
 package lekasv.bek.service.impl;
 
-public class TagServiceImpl {
+import lekasv.bek.dto.tag.CreateTagRequest;
+import lekasv.bek.dto.tag.TagResponse;
+import lekasv.bek.dto.tag.UpdateTagRequest;
+import lekasv.bek.mapper.TagMapper;
+import lekasv.bek.model.Tag;
+import lekasv.bek.repository.TagRepository;
+import lekasv.bek.service.api.TagService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class TagServiceImpl implements TagService {
+    private final TagRepository tagRepository;
+    private final TagMapper tagMapper;
+
+
+    @Override
+    public List<TagResponse> getAll() {
+        return tagRepository.findAll()
+                .stream()
+                .map(tagMapper::toTagResponse)
+                .toList();
+    }
+
+    @Override
+    public TagResponse createTag(CreateTagRequest request) {
+        Tag tag = tagMapper.fromCreateTagRequest(request);
+        tagRepository.save(tag);
+        return tagMapper.toTagResponse(tag);
+    }
+
+    @Override
+    public TagResponse updateTag(UpdateTagRequest tag, Integer id_tag) {
+        Tag tags = tagRepository.findById(id_tag).get();
+        tagMapper.fromUpdateTagRequest(tag, tags);
+        return tagMapper.toTagResponse(tagRepository.save(tags));
+    }
+
+    @Override
+    public void deleteTag(Integer tag) {
+        tagRepository.deleteById(tag);
+    }
 }
