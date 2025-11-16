@@ -7,8 +7,6 @@ import lekasv.bek.model.Task;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
-import java.lang.annotation.Target;
-
 @Mapper(componentModel = "spring")
 public interface TaskMapper {
     Task fromCreateTaskRequest(CreateTaskRequest request);

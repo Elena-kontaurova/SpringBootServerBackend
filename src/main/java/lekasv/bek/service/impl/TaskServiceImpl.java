@@ -1,9 +1,9 @@
 package lekasv.bek.service.impl;
 
-import lekasv.bek.dto.task.TaskResponse;
-import lekasv.bek.enums.TaskStatucEnum;
 import lekasv.bek.dto.task.CreateTaskRequest;
+import lekasv.bek.dto.task.TaskResponse;
 import lekasv.bek.dto.task.UpdateTaskRequest;
+import lekasv.bek.enums.TaskStatucEnum;
 import lekasv.bek.mapper.TaskMapper;
 import lekasv.bek.model.Task;
 import lekasv.bek.repository.TaskRepository;

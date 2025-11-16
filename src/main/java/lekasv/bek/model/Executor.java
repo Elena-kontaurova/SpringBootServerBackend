@@ -1,18 +1,19 @@
 package lekasv.bek.model;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
+@Builder
 @Setter
 @Getter
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
-@Table(name = "role")
-public class Role {
+@Table(name="executors")
+public class Executor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String role;
+    private Integer taskId;
+    private Integer executorId;
 }

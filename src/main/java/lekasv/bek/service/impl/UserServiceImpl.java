@@ -6,7 +6,6 @@ import lekasv.bek.dto.user.UserResponse;
 import lekasv.bek.mapper.UserMapper;
 import lekasv.bek.model.User;
 import lekasv.bek.repository.RoleRepository;
-import lekasv.bek.repository.TaskRepository;
 import lekasv.bek.repository.UserRepository;
 import lekasv.bek.service.api.UserService;
 import lombok.RequiredArgsConstructor;

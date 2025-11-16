@@ -5,7 +5,6 @@ import lekasv.bek.dto.tag.TagResponse;
 import lekasv.bek.dto.tag.UpdateTagRequest;
 import lekasv.bek.service.api.TagService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

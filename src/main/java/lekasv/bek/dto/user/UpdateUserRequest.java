@@ -1,6 +1,5 @@
 package lekasv.bek.dto.user;
 
-import jakarta.persistence.criteria.CriteriaBuilder;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;

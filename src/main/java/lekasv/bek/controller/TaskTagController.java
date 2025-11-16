@@ -4,7 +4,6 @@ import lekasv.bek.dto.taskTag.CreateTaskTagRequest;
 import lekasv.bek.dto.taskTag.TaskTagResponse;
 import lekasv.bek.service.api.TaskTagService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

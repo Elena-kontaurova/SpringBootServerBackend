@@ -1,6 +1,5 @@
 package lekasv.bek.dto.task;
 
-import jakarta.persistence.*;
 import lekasv.bek.enums.TaskStatucEnum;
 import lombok.Builder;
 import lombok.Getter;

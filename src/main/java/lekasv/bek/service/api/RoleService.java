@@ -3,7 +3,6 @@ package lekasv.bek.service.api;
 import lekasv.bek.dto.role.CreateRoleRequest;
 import lekasv.bek.dto.role.RoleResponse;
 import lekasv.bek.dto.role.UpdateRoleRequest;
-import lekasv.bek.model.Role;
 
 import java.util.List;
 

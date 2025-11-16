@@ -20,5 +20,5 @@ public class Task {
     @Enumerated(EnumType.STRING)
     @Column(name="status")
     private TaskStatucEnum status = TaskStatucEnum.NOT_COMPLETED;
-    private Integer userId;
+    private Integer userId; // ответсвенный
 }

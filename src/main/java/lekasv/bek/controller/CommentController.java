@@ -3,7 +3,6 @@ package lekasv.bek.controller;
 import lekasv.bek.dto.comment.CommentResponse;
 import lekasv.bek.dto.comment.CreateCommentRequest;
 import lekasv.bek.dto.comment.UpdateCommentRequest;
-import lekasv.bek.model.Comment;
 import lekasv.bek.service.api.CommentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

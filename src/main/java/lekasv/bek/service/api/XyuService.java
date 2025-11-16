@@ -3,7 +3,6 @@ package lekasv.bek.service.api;
 import lekasv.bek.dto.xyu.CreateXyuRequest;
 import lekasv.bek.dto.xyu.UpdateXyuRequest;
 import lekasv.bek.dto.xyu.XyuResponse;
-import lekasv.bek.model.Xyu;
 
 import java.util.List;
 

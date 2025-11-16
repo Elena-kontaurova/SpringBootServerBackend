@@ -3,7 +3,6 @@ package lekasv.bek.controller;
 import lekasv.bek.dto.xyu.CreateXyuRequest;
 import lekasv.bek.dto.xyu.UpdateXyuRequest;
 import lekasv.bek.dto.xyu.XyuResponse;
-import lekasv.bek.model.Xyu;
 import lekasv.bek.service.api.XyuService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

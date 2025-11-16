@@ -3,7 +3,6 @@ package lekasv.bek.service.api;
 import lekasv.bek.dto.user.CreateUserRequest;
 import lekasv.bek.dto.user.UpdateUserRequest;
 import lekasv.bek.dto.user.UserResponse;
-import lekasv.bek.model.User;
 
 import java.util.List;
 

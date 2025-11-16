@@ -1,10 +1,9 @@
 package lekasv.bek.controller;
 
-import lekasv.bek.dto.task.TaskResponse;
-import lekasv.bek.enums.TaskStatucEnum;
 import lekasv.bek.dto.task.CreateTaskRequest;
+import lekasv.bek.dto.task.TaskResponse;
 import lekasv.bek.dto.task.UpdateTaskRequest;
-import lekasv.bek.model.Task;
+import lekasv.bek.enums.TaskStatucEnum;
 import lekasv.bek.service.api.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

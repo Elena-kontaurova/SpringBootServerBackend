@@ -3,8 +3,6 @@ package lekasv.bek.controller;
 import lekasv.bek.dto.user.CreateUserRequest;
 import lekasv.bek.dto.user.UpdateUserRequest;
 import lekasv.bek.dto.user.UserResponse;
-import lekasv.bek.model.User;
-
 import lekasv.bek.service.api.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;

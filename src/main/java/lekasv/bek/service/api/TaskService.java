@@ -1,10 +1,9 @@
 package lekasv.bek.service.api;
 
-import lekasv.bek.dto.task.TaskResponse;
-import lekasv.bek.enums.TaskStatucEnum;
 import lekasv.bek.dto.task.CreateTaskRequest;
+import lekasv.bek.dto.task.TaskResponse;
 import lekasv.bek.dto.task.UpdateTaskRequest;
-import lekasv.bek.model.Task;
+import lekasv.bek.enums.TaskStatucEnum;
 
 import java.util.List;
 

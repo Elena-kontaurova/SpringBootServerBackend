@@ -1,4 +1,4 @@
-package lekasv.bek.dto.xyu;
+package lekasv.bek.dto.executor;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,8 +7,8 @@ import lombok.extern.jackson.Jacksonized;
 @Getter
 @Builder
 @Jacksonized
-public class XyuResponse {
+public class ExecutorResponse {
     private int id;
-    private String name;
-    private int age;
+    private Integer taskId;
+    private Integer executorId;
 }
