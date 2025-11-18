@@ -1,6 +1,5 @@
 package lekasv.bek.repository;
 
-import lekasv.bek.dto.executor.ExecutorResponse;
 import lekasv.bek.model.Executor;
 import org.springframework.data.jpa.repository.JpaRepository;
 
