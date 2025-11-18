@@ -14,4 +14,5 @@ public class TaskResponse {
     private String description;
     private TaskStatucEnum status;
     private Integer userId;
+    private Integer parentTaskId;
 }

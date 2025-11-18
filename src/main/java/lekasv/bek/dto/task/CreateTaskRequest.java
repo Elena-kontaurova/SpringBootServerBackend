@@ -1,5 +1,6 @@
 package lekasv.bek.dto.task;
 
+import jakarta.persistence.criteria.CriteriaBuilder;
 import lekasv.bek.enums.TaskStatucEnum;
 import lombok.Builder;
 import lombok.Getter;
@@ -13,4 +14,5 @@ public class CreateTaskRequest {
     private String description;
     private TaskStatucEnum status;
     private Integer userId;
+    private Integer parentTaskId;
 }

@@ -13,4 +13,5 @@ public class UpdateTaskRequest {
     private String description;
     private TaskStatucEnum status;
     private Integer userId;
+    private Integer parentTaskId;
 }

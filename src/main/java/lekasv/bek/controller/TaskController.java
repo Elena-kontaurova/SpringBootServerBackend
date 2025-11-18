@@ -55,4 +55,9 @@ public class TaskController {
     public void delete(@PathVariable Integer task_id) {
         taskService.deleteById(task_id);
     }
+
+    @GetMapping("/taskParentId/{taskParentId}")
+    public List<TaskResponse> getByParentTaskId(@PathVariable Integer taskParentId) {
+        return taskService.findByParentTaskId(taskParentId);
+    }
 }

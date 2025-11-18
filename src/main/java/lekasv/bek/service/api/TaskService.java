@@ -16,4 +16,5 @@ public interface TaskService {
     TaskResponse create(CreateTaskRequest task);
     TaskResponse update(Integer task_id, UpdateTaskRequest task);
     void deleteById(Integer task_id);
+    List<TaskResponse> findByParentTaskId(Integer parentTaskId);
 }

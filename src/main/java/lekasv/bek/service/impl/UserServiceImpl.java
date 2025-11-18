@@ -94,7 +94,8 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("Role is null");
         }
         if (!roleRepository.existsById(request.getRoleId())) {
-            throw new IllegalArgumentException("Role not found");        }
+            throw new IllegalArgumentException("Role not found");
+        }
         User users = userRepository.findById(id_user).get();
         userMapper.fromUpdateUserRequest(request, users);
         userRepository.save(users);

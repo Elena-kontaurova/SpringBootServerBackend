@@ -7,7 +7,6 @@ import lekasv.bek.enums.TaskStatucEnum;
 import lekasv.bek.mapper.TaskMapper;
 import lekasv.bek.model.Task;
 import lekasv.bek.repository.TaskRepository;
-import lekasv.bek.repository.UserRepository;
 import lekasv.bek.service.api.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,9 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Service
 public class TaskServiceImpl implements TaskService {
-
     private final TaskRepository taskRepository;
-    private final UserRepository userRepository;
     private final TaskMapper taskMapper;
 
     @Override
@@ -76,9 +73,6 @@ public class TaskServiceImpl implements TaskService {
         if (request.getUserId() == null) {
             throw new IllegalArgumentException("Task user is null");
         }
-        if (!userRepository.existsById(request.getUserId())) {
-            throw new IllegalArgumentException("User not found");
-        }
         Task task = taskMapper.fromCreateTaskRequest(request);
         taskRepository.save(task);
         return taskMapper.toTaskResponse(task);
@@ -98,9 +92,6 @@ public class TaskServiceImpl implements TaskService {
         if (request.getUserId() == null) {
             throw new IllegalArgumentException("Task user is null");
         }
-        if (!userRepository.existsById(request.getUserId())) {
-            throw new IllegalArgumentException("User not found");
-        }
         Task tasks = taskRepository.findById(task_id).get();
         taskMapper.fromUpdateTaskRequest(request, tasks);
         taskRepository.save(tasks);
@@ -110,5 +101,13 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void deleteById(Integer task_id) {
         taskRepository.deleteById(task_id);
+    }
+
+    @Override
+    public List<TaskResponse> findByParentTaskId(Integer parentTaskId) {
+        return taskRepository.findByParentTaskId(parentTaskId)
+                .stream()
+                .map(taskMapper::toTaskResponse)
+                .toList();
     }
 }

@@ -21,4 +21,5 @@ public class Task {
     @Column(name="status")
     private TaskStatucEnum status = TaskStatucEnum.NOT_COMPLETED;
     private Integer userId; // ответсвенный
+    private Integer parentTaskId;
 }
