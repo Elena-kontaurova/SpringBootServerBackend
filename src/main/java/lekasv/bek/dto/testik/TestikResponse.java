@@ -1,4 +1,4 @@
-package lekasv.bek.dto.xyu;
+package lekasv.bek.dto.testik;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -7,7 +7,8 @@ import lombok.extern.jackson.Jacksonized;
 @Getter
 @Builder
 @Jacksonized
-public class CreateXyuRequest {
+public class TestikResponse {
+    private int id;
     private String name;
     private int age;
 }

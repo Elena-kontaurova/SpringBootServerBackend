@@ -9,8 +9,8 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "xyu")
-public class Xyu {
+@Table(name = "testik")
+public class Testik {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
