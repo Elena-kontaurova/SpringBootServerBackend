@@ -4,11 +4,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Builder
 @Jacksonized
 public class CreateCommentRequest {
     private Integer taskId;
-    private Integer userId;
+    private Integer createdBy;
+    private Integer updatedBy;
     private String description;
 }

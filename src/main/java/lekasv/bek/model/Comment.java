@@ -19,7 +19,9 @@ public class Comment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private Integer taskId;
-    private Integer userId;
+    private Integer createdBy;
+    private Integer updatedBy;
     private String description;
-    private LocalDateTime dateTime;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

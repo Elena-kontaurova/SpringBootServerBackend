@@ -3,6 +3,8 @@ package lekasv.bek.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Builder
 @Getter
 @Setter
@@ -19,4 +21,6 @@ public class User {
     private int age;
     private Boolean active;
     private Integer roleId;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

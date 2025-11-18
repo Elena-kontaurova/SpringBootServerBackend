@@ -3,6 +3,8 @@ package lekasv.bek.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Builder
 @Setter
 @Getter
@@ -16,4 +18,6 @@ public class Executor {
     private int id;
     private Integer taskId;
     private Integer executorId;
+    private LocalDateTime createdAt; // когда
+    private Integer createdBy; // кто создал
 }

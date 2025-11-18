@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lekasv.bek.enums.TaskStatucEnum;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Builder
 @Getter
 @Setter
@@ -22,4 +24,8 @@ public class Task {
     private TaskStatucEnum status = TaskStatucEnum.NOT_COMPLETED;
     private Integer userId; // ответсвенный
     private Integer parentTaskId;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+    private Integer createdBy;
+    private Integer updatedBy;
 }

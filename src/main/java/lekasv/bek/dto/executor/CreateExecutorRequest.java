@@ -10,4 +10,5 @@ import lombok.extern.jackson.Jacksonized;
 public class CreateExecutorRequest {
     private Integer taskId;
     private Integer executorId;
+    private Integer createdBy;
 }

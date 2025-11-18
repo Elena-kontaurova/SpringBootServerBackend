@@ -11,6 +11,7 @@ import lekasv.bek.service.api.TaskService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -74,6 +75,8 @@ public class TaskServiceImpl implements TaskService {
             throw new IllegalArgumentException("Task user is null");
         }
         Task task = taskMapper.fromCreateTaskRequest(request);
+        task.setCreatedAt(LocalDateTime.now());
+        task.setUpdatedAt(LocalDateTime.now());
         taskRepository.save(task);
         return taskMapper.toTaskResponse(task);
     }
@@ -94,6 +97,7 @@ public class TaskServiceImpl implements TaskService {
         }
         Task tasks = taskRepository.findById(task_id).get();
         taskMapper.fromUpdateTaskRequest(request, tasks);
+        tasks.setUpdatedAt(LocalDateTime.now());
         taskRepository.save(tasks);
         return taskMapper.toTaskResponse(tasks);
     }

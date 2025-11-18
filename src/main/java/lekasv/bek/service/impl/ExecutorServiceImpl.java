@@ -9,6 +9,7 @@ import lekasv.bek.service.api.ExecutorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -44,6 +45,7 @@ public class ExecutorServiceImpl implements ExecutorService {
     @Override
     public ExecutorResponse create(CreateExecutorRequest request) {
         Executor executor = executorMapper.fromCreateExecutorRequest(request);
+        executor.setCreatedAt(LocalDateTime.now());
         executorRepository.save(executor);
         return executorMapper.toExecutorResponse(executor);
     }

@@ -10,6 +10,7 @@ import lekasv.bek.service.api.TagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -30,6 +31,8 @@ public class TagServiceImpl implements TagService {
     @Override
     public TagResponse createTag(CreateTagRequest request) {
         Tag tag = tagMapper.fromCreateTagRequest(request);
+        tag.setCreatedAt(LocalDateTime.now());
+        tag.setUpdatedAt(LocalDateTime.now());
         tagRepository.save(tag);
         return tagMapper.toTagResponse(tag);
     }
@@ -38,6 +41,7 @@ public class TagServiceImpl implements TagService {
     public TagResponse updateTag(UpdateTagRequest tag, Integer id_tag) {
         Tag tags = tagRepository.findById(id_tag).get();
         tagMapper.fromUpdateTagRequest(tag, tags);
+        tags.setUpdatedAt(LocalDateTime.now());
         return tagMapper.toTagResponse(tagRepository.save(tags));
     }
 

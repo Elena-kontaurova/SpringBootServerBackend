@@ -9,6 +9,7 @@ import lekasv.bek.service.api.TaskTagService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -28,6 +29,7 @@ public class TaskTagServiceImpl implements TaskTagService {
     @Override
     public TaskTagResponse create(CreateTaskTagRequest request) {
         TaskTag taskTag = taskTagMapper.fromCreateTaskTagRequest(request);
+        taskTag.setCreatedAt(LocalDateTime.now());
         taskTagRepository.save(taskTag);
         return taskTagMapper.toTaskTagResponse(taskTag);
     }

@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,4 +18,6 @@ public class TaskTag {
     private int id;
     private Integer taskId;
     private Integer tagId;
+    private LocalDateTime createdAt;
+    private Integer createdBy;
 }

@@ -12,7 +12,9 @@ import java.time.LocalDateTime;
 public class CommentResponse {
     private int id;
     private Integer taskId;
-    private Integer userId;
+    private Integer createdBy;
+    private Integer updatedBy;
     private String description;
-    private LocalDateTime dateTime;
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 }

@@ -11,6 +11,7 @@ import lekasv.bek.service.api.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -75,6 +76,8 @@ public class UserServiceImpl implements UserService {
             throw new IllegalArgumentException("Role not found");
         }
         User user = userMapper.fromCreateUserRequest(request);
+        user.setCreatedAt(LocalDateTime.now());
+        user.setUpdatedAt(LocalDateTime.now());
         userRepository.save(user);
         return userMapper.toUserResponse(user);
     }
@@ -98,6 +101,7 @@ public class UserServiceImpl implements UserService {
         }
         User users = userRepository.findById(id_user).get();
         userMapper.fromUpdateUserRequest(request, users);
+        users.setUpdatedAt(LocalDateTime.now());
         userRepository.save(users);
         return userMapper.toUserResponse(users);
     }

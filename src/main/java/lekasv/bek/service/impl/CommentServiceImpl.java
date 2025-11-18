@@ -41,7 +41,8 @@ public class CommentServiceImpl implements CommentService {
             throw new IllegalArgumentException("Description is null or empty");
         }
         Comment comment = commentMapper.fromCreateCommentRequest(request);
-        comment.setDateTime(LocalDateTime.now());
+        comment.setCreatedAt(LocalDateTime.now());
+        comment.setUpdatedAt(LocalDateTime.now());
         commentRepository.save(comment);
         return commentMapper.toCommentResponse(comment);
     }
@@ -50,6 +51,7 @@ public class CommentServiceImpl implements CommentService {
     public CommentResponse update(UpdateCommentRequest request, int commentId) {
         Comment comment = commentRepository.findById(commentId).get();
         commentMapper.fromUpdateCommentRequest(request, comment);
+        comment.setUpdatedAt(LocalDateTime.now());
         commentRepository.save(comment);
         return commentMapper.toCommentResponse(comment);
     }
