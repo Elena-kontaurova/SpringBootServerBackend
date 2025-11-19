@@ -1,8 +1,8 @@
 package lekasv.bek.service.impl;
 
 import lekasv.bek.dto.testik.CreateTestikRequest;
-import lekasv.bek.dto.testik.UpdateTestikRequest;
 import lekasv.bek.dto.testik.TestikResponse;
+import lekasv.bek.dto.testik.UpdateTestikRequest;
 import lekasv.bek.mapper.TestikMapper;
 import lekasv.bek.model.Testik;
 import lekasv.bek.repository.TestikRepository;
@@ -35,31 +35,19 @@ public class TestikServiceImpl implements TestikService {
     }
 
     @Override
-    public TestikResponse getById(int testikId) {
+    public TestikResponse getById(Integer testikId) {
         return testikMapper.toTestikResponse(testikRepository.findById(testikId).get());
     }
 
     @Override
     public TestikResponse create(CreateTestikRequest request) {
-        if (request.getName() == null || request.getName().isEmpty()) {
-            throw new IllegalArgumentException("Testik name is null or empty");
-        }
-        if (request.getAge() < 0 || request.getAge() > 100) {
-            throw new IllegalArgumentException("Testik age is out of range");
-        }
         Testik testik = testikMapper.fromCreateTestikRequest(request);
        testikRepository.save(testik);
        return testikMapper.toTestikResponse(testik);
     }
 
     @Override
-    public TestikResponse update(UpdateTestikRequest request, int testikId) {
-        if (request.getName() == null || request.getName().isEmpty()) {
-            throw new IllegalArgumentException("Testik name is null or empty");
-        }
-        if (request.getAge() < 0 || request.getAge() > 100) {
-            throw new IllegalArgumentException("Testik age is out of range");
-        }
+    public TestikResponse update(UpdateTestikRequest request, Integer testikId) {
         Testik testik = testikRepository.findById(testikId).get();
         testikMapper.fromUpdateTestikRequest(request, testik);
         testikRepository.save(testik);
@@ -67,7 +55,7 @@ public class TestikServiceImpl implements TestikService {
     }
 
     @Override
-    public void deleteById(int testikId) {
+    public void deleteById(Integer testikId) {
         testikRepository.deleteById(testikId);
     }
 

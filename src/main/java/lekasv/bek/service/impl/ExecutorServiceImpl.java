@@ -51,7 +51,7 @@ public class ExecutorServiceImpl implements ExecutorService {
     }
 
     @Override
-    public void deleteById(int executorId) {
+    public void deleteById(Integer executorId) {
         executorRepository.deleteById(executorId);
     }
 }

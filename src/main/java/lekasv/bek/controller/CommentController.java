@@ -20,7 +20,7 @@ public class CommentController {
         return commentService.getAll();
     }
 
-    @GetMapping("/task_id/{taskId}")
+    @GetMapping("/taskId/{taskId}")
     public List<CommentResponse> findByTaskId(@PathVariable Integer taskId) {
         return commentService.findByTaskId(taskId);
     }
@@ -30,13 +30,13 @@ public class CommentController {
         return commentService.create(comment);
     }
 
-    @PutMapping("/comment/{comment_id}")
-    public CommentResponse update(@PathVariable Integer comment_id, @RequestBody UpdateCommentRequest comment) {
-        return commentService.update(comment, comment_id);
+    @PutMapping("/comment/{commentId}")
+    public CommentResponse update(@PathVariable Integer commentId, @RequestBody UpdateCommentRequest comment) {
+        return commentService.update(comment, commentId);
     }
 
-    @DeleteMapping("/comment/{comment_id}")
-    public void deleteById(@PathVariable int comment_id) {
-        commentService.deleteById(comment_id);
+    @DeleteMapping("/comment/{commentId}")
+    public void deleteById(@PathVariable Integer commentId) {
+        commentService.deleteById(commentId);
     }
 }

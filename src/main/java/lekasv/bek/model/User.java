@@ -15,10 +15,10 @@ import java.time.LocalDateTime;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
     private String lastName;
-    private int age;
+    private Integer age;
     private Boolean active;
     private Integer roleId;
     private LocalDateTime createdAt;

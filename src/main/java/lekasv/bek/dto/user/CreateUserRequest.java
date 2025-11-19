@@ -1,5 +1,6 @@
 package lekasv.bek.dto.user;
 
+import jakarta.validation.constraints.*;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;
@@ -8,9 +9,23 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 public class CreateUserRequest {
+
+    @NotBlank
+    @Pattern(regexp = "^[a-zA-Zа-яА-Я]")
     private String name;
+
+    @NotBlank
+    @Pattern(regexp = "^[a-zA-Zа-яА-Я]")
     private String lastName;
+
+    @NotNull
+    @Min(0)
+    @Max(100)
     private Integer age;
+
+    @NotNull
     private Boolean active;
+
+    @NotNull
     private Integer roleId;
 }

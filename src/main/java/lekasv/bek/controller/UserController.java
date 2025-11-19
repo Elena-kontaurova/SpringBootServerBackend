@@ -25,9 +25,9 @@ public class UserController {
         return userService.getByName(name);
     }
 
-    @GetMapping("/{id_user}")
-    public UserResponse getById(@PathVariable int id_user) {
-        return userService.getById(id_user);
+    @GetMapping("/{userId}")
+    public UserResponse getById(@PathVariable Integer userId) {
+        return userService.getById(userId);
     }
 
     @GetMapping("/lastName/{last_name}")
@@ -36,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("/age/{age}")
-    public List<UserResponse> getByAge(@PathVariable int age) {
+    public List<UserResponse> getByAge(@PathVariable Integer age) {
         return userService.getByAge(age);
     }
 
@@ -45,13 +45,13 @@ public class UserController {
         return userService.create(request);
     }
 
-    @PutMapping("/{id_user}")
-    public UserResponse puyUser(@RequestBody UpdateUserRequest request, @PathVariable int id_user) {
-        return userService.update(request, id_user);
+    @PutMapping("/{userId}")
+    public UserResponse puyUser(@RequestBody UpdateUserRequest request, @PathVariable Integer userId) {
+        return userService.update(request, userId);
     }
 
-    @DeleteMapping("/{id_user}")
-    public void deleteUser(@PathVariable int id_user) {
-        userService.deleteById(id_user);
+    @DeleteMapping("/{userId}")
+    public void deleteUser(@PathVariable Integer userId) {
+        userService.deleteById(userId);
     }
 }

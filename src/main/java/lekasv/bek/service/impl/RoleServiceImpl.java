@@ -36,19 +36,19 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public RoleResponse update(UpdateRoleRequest request, int id_role) {
+    public RoleResponse update(UpdateRoleRequest request, Integer roleId) {
         if (request.getRole() == null || request.getRole().isEmpty()) {
             throw new IllegalArgumentException("Role is null");
         }
-        Role roles = roleRepository.findById(id_role).get();
+        Role roles = roleRepository.findById(roleId).get();
         roles.setRole(request.getRole());
         roleRepository.save(roles);
         return roleMapper.toRoleResponse(roles);
     }
 
     @Override
-    public void deleteById(int id_role) {
-        roleRepository.deleteById(id_role);
+    public void deleteById(Integer roleId) {
+        roleRepository.deleteById(roleId);
     }
 
     @Override

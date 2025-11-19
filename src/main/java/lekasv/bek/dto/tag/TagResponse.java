@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Builder
 @Getter
 public class TagResponse {
-    private int id;
+    private Integer id;
     private String name;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;

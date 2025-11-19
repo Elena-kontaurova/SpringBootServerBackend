@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @Builder
 @Jacksonized
 public class TaskResponse {
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private TaskStatucEnum status;

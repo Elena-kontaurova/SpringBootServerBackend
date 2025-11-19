@@ -48,7 +48,7 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public CommentResponse update(UpdateCommentRequest request, int commentId) {
+    public CommentResponse update(UpdateCommentRequest request, Integer commentId) {
         Comment comment = commentRepository.findById(commentId).get();
         commentMapper.fromUpdateCommentRequest(request, comment);
         comment.setUpdatedAt(LocalDateTime.now());
@@ -57,8 +57,8 @@ public class CommentServiceImpl implements CommentService {
     }
 
     @Override
-    public void deleteById(int id_comment) {
-        commentRepository.deleteById(id_comment);
+    public void deleteById(Integer commentId) {
+        commentRepository.deleteById(commentId);
     }
 
 }

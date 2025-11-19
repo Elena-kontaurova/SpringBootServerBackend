@@ -25,7 +25,7 @@ public class TaskTagController {
     }
 
     @DeleteMapping("/{taskTagId}")
-    public void delete(@PathVariable int taskTagId) {
+    public void delete(@PathVariable Integer taskTagId) {
         taskTagService.delete(taskTagId);
     }
 }

@@ -38,8 +38,8 @@ public class TagServiceImpl implements TagService {
     }
 
     @Override
-    public TagResponse updateTag(UpdateTagRequest tag, Integer id_tag) {
-        Tag tags = tagRepository.findById(id_tag).get();
+    public TagResponse updateTag(UpdateTagRequest tag, Integer tagId) {
+        Tag tags = tagRepository.findById(tagId).get();
         tagMapper.fromUpdateTagRequest(tag, tags);
         tags.setUpdatedAt(LocalDateTime.now());
         return tagMapper.toTagResponse(tagRepository.save(tags));

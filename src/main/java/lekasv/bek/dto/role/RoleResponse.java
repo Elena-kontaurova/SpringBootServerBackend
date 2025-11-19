@@ -8,6 +8,6 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 public class RoleResponse {
-    private int id;
+    private Integer id;
     private String role;
 }

@@ -1,5 +1,6 @@
 package lekasv.bek.dto.role;
 
+import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;
@@ -8,5 +9,6 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 public class CreateRoleRequest {
+    @NotBlank
     private String role;
 }

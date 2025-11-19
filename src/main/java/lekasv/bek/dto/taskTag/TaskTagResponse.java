@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Builder
 @Jacksonized
 public class TaskTagResponse {
-    private int id;
+    private Integer id;
     private Integer tagId;
     private Integer taskId;
     private LocalDateTime createdAt;

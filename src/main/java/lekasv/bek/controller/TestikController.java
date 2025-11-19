@@ -1,8 +1,8 @@
 package lekasv.bek.controller;
 
 import lekasv.bek.dto.testik.CreateTestikRequest;
-import lekasv.bek.dto.testik.UpdateTestikRequest;
 import lekasv.bek.dto.testik.TestikResponse;
+import lekasv.bek.dto.testik.UpdateTestikRequest;
 import lekasv.bek.service.api.TestikService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -25,23 +25,23 @@ public class TestikController {
         return testikService.getByName(name);
     }
 
-    @GetMapping("/{id_testik}")
-    public TestikResponse getById(@PathVariable int id_testik) {
-        return testikService.getById(id_testik);
+    @GetMapping("/{testikId}")
+    public TestikResponse getById(@PathVariable Integer testikId) {
+        return testikService.getById(testikId);
     }
 
     @PostMapping()
-    public TestikResponse posttestik(@RequestBody CreateTestikRequest request) {
+    public TestikResponse postTestik(@RequestBody CreateTestikRequest request) {
         return testikService.create(request);
     }
 
-    @PutMapping("/{id_testik}")
-    public TestikResponse puttestik(@RequestBody UpdateTestikRequest request, @PathVariable int id_testik) {
-        return testikService.update(request, id_testik);
+    @PutMapping("/{testikId}")
+    public TestikResponse putTestik(@RequestBody UpdateTestikRequest request, @PathVariable Integer testikId) {
+        return testikService.update(request, testikId);
     }
 
-    @DeleteMapping("/{id_testik}")
-    public void deletetestik(@PathVariable int id_testik) {
-        testikService.deleteById(id_testik);
+    @DeleteMapping("/{testikId}")
+    public void deleteTestik(@PathVariable Integer testikId) {
+        testikService.deleteById(testikId);
     }
 }

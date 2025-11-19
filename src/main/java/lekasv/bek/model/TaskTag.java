@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class TaskTag {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private Integer taskId;
     private Integer tagId;
     private LocalDateTime createdAt;

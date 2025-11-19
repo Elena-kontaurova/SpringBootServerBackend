@@ -8,7 +8,7 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 public class TestikResponse {
-    private int id;
+    private Integer id;
     private String name;
-    private int age;
+    private Integer age;
 }

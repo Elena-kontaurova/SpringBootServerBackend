@@ -62,18 +62,6 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskResponse create(CreateTaskRequest request) {
-        if (request.getName() == null || request.getName().isEmpty()) {
-            throw new IllegalArgumentException("Task name is null");
-        }
-        if (request.getDescription() == null || request.getDescription().isEmpty()) {
-            throw new IllegalArgumentException("Task description is null");
-        }
-        if (request.getStatus() == null) {
-            throw new IllegalArgumentException("Task status is null");
-        }
-        if (request.getUserId() == null) {
-            throw new IllegalArgumentException("Task user is null");
-        }
         Task task = taskMapper.fromCreateTaskRequest(request);
         task.setCreatedAt(LocalDateTime.now());
         task.setUpdatedAt(LocalDateTime.now());
@@ -82,20 +70,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public TaskResponse update(Integer task_id, UpdateTaskRequest request) {
-        if (request.getName() == null || request.getName().isEmpty()) {
-            throw new IllegalArgumentException("Task name is null");
-        }
-        if (request.getDescription() == null || request.getDescription().isEmpty()) {
-            throw new IllegalArgumentException("Task description is null");
-        }
-        if (request.getStatus() == null) {
-            throw new IllegalArgumentException("Task status is null");
-        }
-        if (request.getUserId() == null) {
-            throw new IllegalArgumentException("Task user is null");
-        }
-        Task tasks = taskRepository.findById(task_id).get();
+    public TaskResponse update(Integer taskId, UpdateTaskRequest request) {
+        Task tasks = taskRepository.findById(taskId).get();
         taskMapper.fromUpdateTaskRequest(request, tasks);
         tasks.setUpdatedAt(LocalDateTime.now());
         taskRepository.save(tasks);
@@ -103,8 +79,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void deleteById(Integer task_id) {
-        taskRepository.deleteById(task_id);
+    public void deleteById(Integer taskId) {
+        taskRepository.deleteById(taskId);
     }
 
     @Override

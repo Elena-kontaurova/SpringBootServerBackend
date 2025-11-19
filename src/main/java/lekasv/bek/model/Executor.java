@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 public class Executor {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private Integer taskId;
     private Integer executorId;
     private LocalDateTime createdAt; // когда

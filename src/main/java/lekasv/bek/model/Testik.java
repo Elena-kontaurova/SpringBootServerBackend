@@ -13,7 +13,7 @@ import lombok.*;
 public class Testik {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     private String name;
-    private int age;
+    private Integer age;
 }

@@ -25,13 +25,13 @@ public class TagController {
         return tagService.createTag(request);
     }
 
-    @PutMapping("/{id_tag}")
-    public TagResponse updateTag(@RequestBody UpdateTagRequest request, @PathVariable int id_tag) {
-        return tagService.updateTag(request, id_tag);
+    @PutMapping("/{tagId}")
+    public TagResponse updateTag(@RequestBody UpdateTagRequest request, @PathVariable Integer tagId) {
+        return tagService.updateTag(request, tagId);
     }
 
-    @DeleteMapping("/{id_tag}")
-    public void deleteTag(@PathVariable int id_tag) {
-        tagService.deleteTag(id_tag);
+    @DeleteMapping("/{tagId}")
+    public void deleteTag(@PathVariable Integer tagId) {
+        tagService.deleteTag(tagId);
     }
 }

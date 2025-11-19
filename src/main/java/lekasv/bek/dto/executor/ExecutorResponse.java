@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Builder
 @Jacksonized
 public class ExecutorResponse {
-    private int id;
+    private Integer id;
     private Integer taskId;
     private Integer executorId;
     private LocalDateTime createdAt; // когда

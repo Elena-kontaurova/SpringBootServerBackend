@@ -1,5 +1,7 @@
 package lekasv.bek.dto.comment;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;
@@ -8,8 +10,16 @@ import lombok.extern.jackson.Jacksonized;
 @Builder
 @Jacksonized
 public class UpdateCommentRequest {
+
+    @NotNull
     private Integer taskId;
+
+    @NotNull
     private Integer createdBy;
+
+    @NotNull
     private Integer updatedBy;
+
+    @NotBlank
     private String description;
 }

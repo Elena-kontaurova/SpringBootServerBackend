@@ -38,8 +38,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse getById(int id_user) {
-        return userMapper.toUserResponse(userRepository.findById(id_user).get());
+    public UserResponse getById(Integer userId) {
+        return userMapper.toUserResponse(userRepository.findById(userId).get());
     }
 
     @Override
@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<UserResponse> getByAge(int age) {
+    public List<UserResponse> getByAge(Integer age) {
         return userRepository.findByAge(age)
                 .stream()
                 .map(userMapper::toUserResponse)
@@ -60,21 +60,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse create(CreateUserRequest request) {
-        if (request.getName() == null || request.getName().isEmpty()) {
-            throw new IllegalArgumentException("Name is null");
-        }
-        if (request.getLastName() == null || request.getLastName().isEmpty()) {
-            throw new IllegalArgumentException("LastName is null");
-        }
-        if (request.getAge() < 0 || request.getAge() > 100) {
-            throw new IllegalArgumentException("Age must be between 0 and 100");
-        }
-        if (request.getRoleId() == null ) {
-            throw new IllegalArgumentException("Role is null");
-        }
-        if (!roleRepository.existsById(request.getRoleId())) {
-            throw new IllegalArgumentException("Role not found");
-        }
         User user = userMapper.fromCreateUserRequest(request);
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
@@ -83,23 +68,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse update(UpdateUserRequest request, int id_user) {
-        if (request.getName() == null || request.getName().isEmpty()) {
-            throw new IllegalArgumentException("Name is null");
-        }
-        if (request.getLastName() == null || request.getLastName().isEmpty()) {
-            throw new IllegalArgumentException("LastName is null");
-        }
-        if (request.getAge() < 0 || request.getAge() > 100) {
-            throw new IllegalArgumentException("Age must be between 0 and 100");
-        }
-        if (request.getRoleId() == null ) {
-            throw new IllegalArgumentException("Role is null");
-        }
-        if (!roleRepository.existsById(request.getRoleId())) {
-            throw new IllegalArgumentException("Role not found");
-        }
-        User users = userRepository.findById(id_user).get();
+    public UserResponse update(UpdateUserRequest request, Integer userId) {
+        User users = userRepository.findById(userId).get();
         userMapper.fromUpdateUserRequest(request, users);
         users.setUpdatedAt(LocalDateTime.now());
         userRepository.save(users);
@@ -107,7 +77,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteById(int id_user) {
-        userRepository.deleteById(id_user);
+    public void deleteById(Integer userId) {
+        userRepository.deleteById(userId);
     }
 }
