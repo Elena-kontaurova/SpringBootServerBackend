@@ -3,6 +3,7 @@ package lekasv.bek.service.impl;
 import lekasv.bek.dto.tag.CreateTagRequest;
 import lekasv.bek.dto.tag.TagResponse;
 import lekasv.bek.dto.tag.UpdateTagRequest;
+import lekasv.bek.exception.extended.tag.TagNotFoundException;
 import lekasv.bek.mapper.TagMapper;
 import lekasv.bek.model.Tag;
 import lekasv.bek.repository.TagRepository;
@@ -39,7 +40,8 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public TagResponse updateTag(UpdateTagRequest tag, Integer tagId) {
-        Tag tags = tagRepository.findById(tagId).get();
+        Tag tags = tagRepository.findById(tagId)
+                .orElseThrow(TagNotFoundException::new);
         tagMapper.fromUpdateTagRequest(tag, tags);
         tags.setUpdatedAt(LocalDateTime.now());
         return tagMapper.toTagResponse(tagRepository.save(tags));

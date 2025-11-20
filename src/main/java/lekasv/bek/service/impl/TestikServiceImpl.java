@@ -3,6 +3,7 @@ package lekasv.bek.service.impl;
 import lekasv.bek.dto.testik.CreateTestikRequest;
 import lekasv.bek.dto.testik.TestikResponse;
 import lekasv.bek.dto.testik.UpdateTestikRequest;
+import lekasv.bek.exception.extended.testik.TestikNotFoundException;
 import lekasv.bek.mapper.TestikMapper;
 import lekasv.bek.model.Testik;
 import lekasv.bek.repository.TestikRepository;
@@ -36,7 +37,8 @@ public class TestikServiceImpl implements TestikService {
 
     @Override
     public TestikResponse getById(Integer testikId) {
-        return testikMapper.toTestikResponse(testikRepository.findById(testikId).get());
+        return testikMapper.toTestikResponse(testikRepository.findById(testikId)
+                .orElseThrow(TestikNotFoundException::new));
     }
 
     @Override
@@ -48,7 +50,8 @@ public class TestikServiceImpl implements TestikService {
 
     @Override
     public TestikResponse update(UpdateTestikRequest request, Integer testikId) {
-        Testik testik = testikRepository.findById(testikId).get();
+        Testik testik = testikRepository.findById(testikId)
+                .orElseThrow(TestikNotFoundException::new);
         testikMapper.fromUpdateTestikRequest(request, testik);
         testikRepository.save(testik);
         return testikMapper.toTestikResponse(testik);

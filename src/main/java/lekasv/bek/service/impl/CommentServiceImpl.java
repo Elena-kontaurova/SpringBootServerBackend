@@ -3,6 +3,7 @@ package lekasv.bek.service.impl;
 import lekasv.bek.dto.comment.CommentResponse;
 import lekasv.bek.dto.comment.CreateCommentRequest;
 import lekasv.bek.dto.comment.UpdateCommentRequest;
+import lekasv.bek.exception.extended.comment.CommentNotFoundException;
 import lekasv.bek.mapper.CommentMapper;
 import lekasv.bek.model.Comment;
 import lekasv.bek.repository.CommentRepository;
@@ -49,7 +50,9 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public CommentResponse update(UpdateCommentRequest request, Integer commentId) {
-        Comment comment = commentRepository.findById(commentId).get();
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(CommentNotFoundException::new);
+
         commentMapper.fromUpdateCommentRequest(request, comment);
         comment.setUpdatedAt(LocalDateTime.now());
         commentRepository.save(comment);

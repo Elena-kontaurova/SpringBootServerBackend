@@ -3,9 +3,9 @@ package lekasv.bek.service.impl;
 import lekasv.bek.dto.user.CreateUserRequest;
 import lekasv.bek.dto.user.UpdateUserRequest;
 import lekasv.bek.dto.user.UserResponse;
+import lekasv.bek.exception.extended.user.UserNotFoundException;
 import lekasv.bek.mapper.UserMapper;
 import lekasv.bek.model.User;
-import lekasv.bek.repository.RoleRepository;
 import lekasv.bek.repository.UserRepository;
 import lekasv.bek.service.api.UserService;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +18,6 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
-    private final RoleRepository roleRepository;
     private final UserMapper userMapper;
 
     @Override
@@ -39,7 +38,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse getById(Integer userId) {
-        return userMapper.toUserResponse(userRepository.findById(userId).get());
+        return userMapper.toUserResponse(userRepository.findById(userId)
+                .orElseThrow(UserNotFoundException::new));
     }
 
     @Override
@@ -69,7 +69,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public UserResponse update(UpdateUserRequest request, Integer userId) {
-        User users = userRepository.findById(userId).get();
+        User users = userRepository.findById(userId)
+                .orElseThrow(UserNotFoundException::new);
         userMapper.fromUpdateUserRequest(request, users);
         users.setUpdatedAt(LocalDateTime.now());
         userRepository.save(users);

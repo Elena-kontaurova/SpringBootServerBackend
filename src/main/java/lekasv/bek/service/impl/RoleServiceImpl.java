@@ -3,6 +3,7 @@ package lekasv.bek.service.impl;
 import lekasv.bek.dto.role.CreateRoleRequest;
 import lekasv.bek.dto.role.RoleResponse;
 import lekasv.bek.dto.role.UpdateRoleRequest;
+import lekasv.bek.exception.extended.role.RoleNotFoundException;
 import lekasv.bek.mapper.RoleMapper;
 import lekasv.bek.model.Role;
 import lekasv.bek.repository.RoleRepository;
@@ -40,7 +41,8 @@ public class RoleServiceImpl implements RoleService {
         if (request.getRole() == null || request.getRole().isEmpty()) {
             throw new IllegalArgumentException("Role is null");
         }
-        Role roles = roleRepository.findById(roleId).get();
+        Role roles = roleRepository.findById(roleId)
+                .orElseThrow(RoleNotFoundException::new);
         roles.setRole(request.getRole());
         roleRepository.save(roles);
         return roleMapper.toRoleResponse(roles);

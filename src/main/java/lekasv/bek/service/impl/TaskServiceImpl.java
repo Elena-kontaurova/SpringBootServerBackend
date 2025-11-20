@@ -4,6 +4,7 @@ import lekasv.bek.dto.task.CreateTaskRequest;
 import lekasv.bek.dto.task.TaskResponse;
 import lekasv.bek.dto.task.UpdateTaskRequest;
 import lekasv.bek.enums.TaskStatucEnum;
+import lekasv.bek.exception.extended.task.TaskNotFoundException;
 import lekasv.bek.mapper.TaskMapper;
 import lekasv.bek.model.Task;
 import lekasv.bek.repository.TaskRepository;
@@ -71,7 +72,8 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public TaskResponse update(Integer taskId, UpdateTaskRequest request) {
-        Task tasks = taskRepository.findById(taskId).get();
+        Task tasks = taskRepository.findById(taskId)
+                .orElseThrow(TaskNotFoundException::new);
         taskMapper.fromUpdateTaskRequest(request, tasks);
         tasks.setUpdatedAt(LocalDateTime.now());
         taskRepository.save(tasks);
