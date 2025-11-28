@@ -8,4 +8,5 @@ import java.util.List;
 public interface ExecutorRepository extends JpaRepository<Executor, Integer> {
     List<Executor> findByTaskId(Integer taskId);
     List<Executor> findByExecutorId(Integer executorId);
+    List<Integer> findExecutorIdsByTaskId(Integer taskId);
 }

@@ -1,10 +1,12 @@
 package lekasv.bek.controller;
 
 import lekasv.bek.dto.task.CreateTaskRequest;
+import lekasv.bek.dto.task.TaskFullInfoResponse;
 import lekasv.bek.dto.task.TaskResponse;
 import lekasv.bek.dto.task.UpdateTaskRequest;
 import lekasv.bek.enums.TaskStatucEnum;
 import lekasv.bek.service.api.TaskService;
+import lekasv.bek.service.impl.TaskFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,6 +17,12 @@ import java.util.List;
 @RequestMapping("/task")
 public class TaskController {
     private final TaskService taskService;
+    private final TaskFacade taskFacade;
+
+    @GetMapping("/full-info/{taskId}")
+    public TaskFullInfoResponse getTaskFullInfo(@PathVariable Integer taskId) {
+        return taskFacade.getTaskFullInfo(taskId);
+    }
 
     @GetMapping
     public List<TaskResponse> getAll() {

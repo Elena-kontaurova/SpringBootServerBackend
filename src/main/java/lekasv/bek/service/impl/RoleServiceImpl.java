@@ -28,9 +28,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public RoleResponse create(CreateRoleRequest request) {
-        if (request.getRole() == null || request.getRole().isEmpty()) {
-            throw new IllegalArgumentException("Role is null");
-        }
         Role role = roleMapper.fromCreateRoleRequest(request);
         roleRepository.save(role);
         return roleMapper.toRoleResponse(role);
@@ -38,9 +35,6 @@ public class RoleServiceImpl implements RoleService {
 
     @Override
     public RoleResponse update(UpdateRoleRequest request, Integer roleId) {
-        if (request.getRole() == null || request.getRole().isEmpty()) {
-            throw new IllegalArgumentException("Role is null");
-        }
         Role roles = roleRepository.findById(roleId)
                 .orElseThrow(RoleNotFoundException::new);
         roles.setRole(request.getRole());
