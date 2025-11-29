@@ -38,6 +38,14 @@ public class TaskFacade {
                 .orElseThrow(TaskNotFoundException::new);
 
         List<Integer> executorsIds = executorRepository.findExecutorIdsByTaskId(taskId);
+        List<TaskFullInfoResponse.User> executors = userRepository.findAllById(executorsIds)
+                .stream()
+                .map(u -> TaskFullInfoResponse.User.builder()
+                        .id(u.getId())
+                        .name(u.getName())
+                        .lastName(u.getLastName())
+                        .build())
+                .toList();
 
 
         return TaskFullInfoResponse.builder()
@@ -74,6 +82,8 @@ public class TaskFacade {
                                 .lastName(user.getLastName())
                                 .build()
                 )
+
+                .executors(executors)
 
                 .build();
     }

@@ -9,7 +9,4 @@ public class BekApplication {
     public static void main(String[] args) {
         SpringApplication.run(BekApplication.class, args);
     }
-
-
-
 }

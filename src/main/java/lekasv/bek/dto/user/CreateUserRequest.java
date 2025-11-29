@@ -11,11 +11,11 @@ import lombok.extern.jackson.Jacksonized;
 public class CreateUserRequest {
 
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Zа-яА-Я]")
+    @Pattern(regexp = "^[a-zA-Zа-яА-ЯёЁ\\\\s-]+$")
     private String name;
 
     @NotBlank
-    @Pattern(regexp = "^[a-zA-Zа-яА-Я]")
+    @Pattern(regexp = "^[a-zA-Zа-яА-ЯёЁ\\\\s-]+$")
     private String lastName;
 
     @NotNull

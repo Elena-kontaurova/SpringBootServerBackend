@@ -1,15 +1,14 @@
 package lekasv.bek.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Builder
+
 @Setter
 @Getter
-@NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name="executors")
 public class Executor {

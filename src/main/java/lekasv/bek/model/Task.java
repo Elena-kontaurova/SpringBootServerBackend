@@ -2,15 +2,14 @@ package lekasv.bek.model;
 
 import jakarta.persistence.*;
 import lekasv.bek.enums.TaskStatucEnum;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
 
-@Builder
+
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "task")
 public class Task {
