@@ -7,6 +7,7 @@ import lekasv.bek.dto.user.UserResponse;
 import org.springframework.validation.annotation.Validated;
 
 import java.util.List;
+
 @Validated
 public interface UserService {
     List<UserResponse> getAll();
@@ -17,4 +18,6 @@ public interface UserService {
     UserResponse create(@Valid CreateUserRequest request);
     UserResponse update(@Valid UpdateUserRequest request, Integer userId);
     void deleteById(Integer userId);
+    UserResponse authorization(String userName, String password);
+    UserResponse registration(String userName, String password);
 }

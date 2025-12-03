@@ -81,4 +81,24 @@ public class UserServiceImpl implements UserService {
     public void deleteById(Integer userId) {
         userRepository.deleteById(userId);
     }
+
+    @Override
+    public UserResponse authorization(String userName, String password) {
+        User user = userRepository.findByUserNameAndPassword(userName, password);
+        if (user == null) {
+            throw new UserNotFoundException();
+        }
+        return userMapper.toUserResponse(user);
+    }
+
+    @Override
+    public UserResponse registration(String userName, String password) {
+        User user = new User();
+        user.setUserName(userName);
+        user.setPassword(password);
+        user.setAge(0);
+        userRepository.save(user);
+
+        return userMapper.toUserResponse(user);
+    }
 }

@@ -28,4 +28,10 @@ public class UpdateUserRequest {
 
     @NotNull
     private Integer roleId;
+
+    @NotNull
+    private String password;
+
+    @NotNull
+    private String userName;
 }

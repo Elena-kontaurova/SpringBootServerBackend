@@ -21,4 +21,6 @@ public class User {
     private Integer roleId;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private String password;
+    private String userName;
 }

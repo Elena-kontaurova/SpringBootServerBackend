@@ -120,4 +120,14 @@ public class UserController {
             @PathVariable Integer userId) {
         userService.deleteById(userId);
     }
+
+    @PostMapping("authorization/{userName}/{password}")
+    public UserResponse authorization(@PathVariable String userName, @PathVariable String password) {
+        return userService.authorization(userName, password);
+    }
+
+    @PostMapping("registration/{userName}/{password}")
+    public UserResponse registration(@PathVariable String userName, @PathVariable String password) {
+        return userService.registration(userName, password);
+    }
 }
