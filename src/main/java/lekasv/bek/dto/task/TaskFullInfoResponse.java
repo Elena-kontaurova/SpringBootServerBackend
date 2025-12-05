@@ -25,6 +25,7 @@ public class TaskFullInfoResponse {
     private TaskFullInfoResponse.User createdBy;
     private TaskFullInfoResponse.User updatedBy;
     private List<TaskFullInfoResponse.User> executors;
+    private TaskFullInfoResponse.TaskGroup taskGroup;
 
     @Builder
     @Getter
@@ -39,6 +40,14 @@ public class TaskFullInfoResponse {
     @Getter
     @Jacksonized
     public static class Task {
+        private Integer id;
+        private String name;
+    }
+
+    @Builder
+    @Getter
+    @Jacksonized
+    public static class TaskGroup {
         private Integer id;
         private String name;
     }

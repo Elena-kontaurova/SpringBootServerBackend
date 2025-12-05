@@ -62,6 +62,14 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public List<TaskResponse> getByTaskGroupId(Integer taskGroupId) {
+        return taskRepository.findByTaskGroupId(taskGroupId)
+                .stream()
+                .map(taskMapper::toTaskResponse)
+                .toList();
+    }
+
+    @Override
     public TaskResponse create(CreateTaskRequest request) {
         Task task = taskMapper.fromCreateTaskRequest(request);
         task.setCreatedAt(LocalDateTime.now());

@@ -11,4 +11,6 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
     List<Task> findByStatus(TaskStatucEnum status);
     List<Task> findByUserId(Integer userId);
     List<Task> findByParentTaskId(Integer parentTaskId);
+    List<Task> findByTaskGroupId(Integer taskGroupId);
+    List<Task> findByTaskGroupIdIn(List<Integer> taskGroupIds);
 }

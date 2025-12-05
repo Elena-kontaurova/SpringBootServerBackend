@@ -27,4 +27,5 @@ public class Task {
     private LocalDateTime updatedAt;
     private Integer createdBy;
     private Integer updatedBy;
+    private Integer taskGroupId;
 }

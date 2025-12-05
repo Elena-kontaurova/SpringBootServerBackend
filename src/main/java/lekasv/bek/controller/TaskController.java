@@ -98,6 +98,11 @@ public class TaskController {
         return taskService.getByUserId(userId);
     }
 
+    @GetMapping("/group/{taskGroupId}")
+    public List<TaskResponse> getByGroupTaskId(@PathVariable Integer taskGroupId) {
+        return taskService.getByTaskGroupId(taskGroupId);
+    }
+
     @Operation(summary = "Создать задачу", description = "Создает новую задачу")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Задача создана"),

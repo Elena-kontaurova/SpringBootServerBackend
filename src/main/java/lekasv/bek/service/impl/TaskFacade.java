@@ -4,8 +4,10 @@ import lekasv.bek.dto.task.TaskFullInfoResponse;
 import lekasv.bek.exception.extended.task.TaskNotFoundException;
 import lekasv.bek.exception.extended.user.UserNotFoundException;
 import lekasv.bek.model.Task;
+import lekasv.bek.model.TaskGroup;
 import lekasv.bek.model.User;
 import lekasv.bek.repository.ExecutorRepository;
+import lekasv.bek.repository.TaskGroupRepository;
 import lekasv.bek.repository.TaskRepository;
 import lekasv.bek.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ public class TaskFacade {
     private final TaskRepository taskRepository;
     private final UserRepository userRepository;
     private final ExecutorRepository executorRepository;
+    private final TaskGroupRepository taskGroupRepository;
 
 
     public TaskFullInfoResponse getTaskFullInfo(Integer taskId) {
@@ -27,6 +30,9 @@ public class TaskFacade {
 
         User user = userRepository.findById(task.getUserId())
                 .orElseThrow(UserNotFoundException::new);
+
+        TaskGroup taskGroup = taskGroupRepository.findById(task.getTaskGroupId())
+                .orElseThrow(TaskNotFoundException::new);
 
         TaskFullInfoResponse.Task parrentTask =task.getParentTaskId() == null
                 ? null
@@ -84,6 +90,13 @@ public class TaskFacade {
                 )
 
                 .executors(executors)
+
+                .taskGroup(
+                        TaskFullInfoResponse.TaskGroup.builder()
+                                .id(taskGroup.getId())
+                                .name(taskGroup.getName())
+                                .build()
+                )
 
                 .build();
     }

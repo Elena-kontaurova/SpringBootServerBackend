@@ -15,6 +15,7 @@ public interface TaskService {
     List<TaskResponse> getByName(String name);
     List<TaskResponse> getByStatus(TaskStatucEnum status);
     List<TaskResponse> getByUserId(Integer userId);
+    List<TaskResponse> getByTaskGroupId(Integer taskGroupId);
     TaskResponse create(@Valid CreateTaskRequest task);
     TaskResponse update(@Valid Integer taskId, UpdateTaskRequest task);
     void deleteById(Integer taskId);

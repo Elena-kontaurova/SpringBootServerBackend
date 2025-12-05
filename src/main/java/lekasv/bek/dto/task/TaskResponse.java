@@ -21,4 +21,5 @@ public class TaskResponse {
     private LocalDateTime updatedAt;
     private Integer createdBy;
     private Integer updatedBy;
+    private Integer taskGroupId;
 }

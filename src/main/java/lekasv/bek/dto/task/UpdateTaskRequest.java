@@ -30,4 +30,7 @@ public class UpdateTaskRequest {
 
     @NotNull
     private Integer updatedBy;
+
+    @NotNull
+    private Integer taskGroupId;
 }
