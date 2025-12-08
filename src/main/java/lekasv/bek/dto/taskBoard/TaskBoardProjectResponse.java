@@ -7,8 +7,7 @@ import lombok.extern.jackson.Jacksonized;
 @Getter
 @Builder
 @Jacksonized
-public class TaskBoardResponse {
+public class TaskBoardProjectResponse {
     private int id;
     private String name;
-    private Integer projectId;
 }

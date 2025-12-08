@@ -4,14 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @Entity
-@Table(name="taskBoard")
-public class TaskBoard {
+@Table
+public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
-    private Integer projectId;
 }

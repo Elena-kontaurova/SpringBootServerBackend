@@ -2,6 +2,7 @@ package lekasv.bek.controller;
 
 import lekasv.bek.dto.taskBoard.CreateTaskBoardRequest;
 import lekasv.bek.dto.taskBoard.TaskBoardFullInfoResponse;
+import lekasv.bek.dto.taskBoard.TaskBoardProjectResponse;
 import lekasv.bek.dto.taskBoard.TaskBoardResponse;
 import lekasv.bek.dto.taskGroup.UpdateTaskGroupRequest;
 import lekasv.bek.service.api.TaskBoardService;
@@ -21,6 +22,11 @@ public class TaskBoardController {
     @GetMapping("/full-info/{taskBoardId}")
     public TaskBoardFullInfoResponse getTaskBoardFullInfo(@PathVariable Integer taskBoardId) {
         return taskBoardFacade.getTaskBoardFullInfo(taskBoardId);
+    }
+
+    @GetMapping("/project/{projectId}")
+    public List<TaskBoardProjectResponse> getByProjectId(@PathVariable Integer projectId) {
+        return taskBoardService.getByProjectId(projectId);
     }
 
     @GetMapping

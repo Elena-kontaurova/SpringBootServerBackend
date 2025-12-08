@@ -1,12 +1,10 @@
 package lekasv.bek.service.impl;
 
-import lekasv.bek.dto.task.TaskFullInfoResponse;
 import lekasv.bek.dto.taskBoard.TaskBoardFullInfoResponse;
 import lekasv.bek.exception.extended.taskBoard.TaskBoardNotFoundException;
 import lekasv.bek.model.Task;
 import lekasv.bek.model.TaskBoard;
 import lekasv.bek.model.TaskGroup;
-import lekasv.bek.model.User;
 import lekasv.bek.repository.TaskBoardRepository;
 import lekasv.bek.repository.TaskGroupRepository;
 import lekasv.bek.repository.TaskRepository;

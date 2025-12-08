@@ -1,6 +1,7 @@
 package lekasv.bek.mapper;
 
 import lekasv.bek.dto.taskBoard.CreateTaskBoardRequest;
+import lekasv.bek.dto.taskBoard.TaskBoardProjectResponse;
 import lekasv.bek.dto.taskBoard.TaskBoardResponse;
 import lekasv.bek.dto.taskBoard.UpdateTaskBoardRequest;
 import lekasv.bek.model.TaskBoard;
@@ -11,5 +12,5 @@ import org.mapstruct.MappingTarget;
 public interface TaskBoardMapper {
     TaskBoardResponse toTaskBoardResponse(TaskBoard taskBoard);
     TaskBoard fromCreateTaskBoardRequest(CreateTaskBoardRequest request);
-    void fromUpdateTaskBoardRequest(UpdateTaskBoardRequest request, @MappingTarget TaskBoard taskBoard);
+    TaskBoardProjectResponse toTaskBoardProjectResponse(TaskBoard taskBoard);
 }

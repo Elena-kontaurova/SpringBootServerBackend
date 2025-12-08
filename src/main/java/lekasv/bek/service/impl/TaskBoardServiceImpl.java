@@ -1,6 +1,7 @@
 package lekasv.bek.service.impl;
 
 import lekasv.bek.dto.taskBoard.CreateTaskBoardRequest;
+import lekasv.bek.dto.taskBoard.TaskBoardProjectResponse;
 import lekasv.bek.dto.taskBoard.TaskBoardResponse;
 import lekasv.bek.dto.taskGroup.UpdateTaskGroupRequest;
 import lekasv.bek.exception.extended.taskBoard.TaskBoardNotFoundException;
@@ -25,6 +26,14 @@ public class TaskBoardServiceImpl implements TaskBoardService {
         return taskBoardRepository.findAll()
                 .stream()
                 .map(taskBoardMapper::toTaskBoardResponse)
+                .toList();
+    }
+
+    @Override
+    public List<TaskBoardProjectResponse> getByProjectId(Integer projectId) {
+        return taskBoardRepository.findByProjectId(projectId)
+                .stream()
+                .map(taskBoardMapper::toTaskBoardProjectResponse)
                 .toList();
     }
 

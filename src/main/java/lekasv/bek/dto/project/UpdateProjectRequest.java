@@ -1,7 +1,6 @@
-package lekasv.bek.dto.taskBoard;
+package lekasv.bek.dto.project;
 
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.extern.jackson.Jacksonized;
@@ -9,12 +8,8 @@ import lombok.extern.jackson.Jacksonized;
 @Getter
 @Builder
 @Jacksonized
-public class CreateTaskBoardRequest {
+public class UpdateProjectRequest {
 
     @NotBlank
     private String name;
-
-    @NotNull
-    private Integer projectId;
 }
-
