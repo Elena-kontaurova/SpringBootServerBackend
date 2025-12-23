@@ -3,10 +3,8 @@ package lekasv.bek.mapper;
 import lekasv.bek.dto.taskBoard.CreateTaskBoardRequest;
 import lekasv.bek.dto.taskBoard.TaskBoardProjectResponse;
 import lekasv.bek.dto.taskBoard.TaskBoardResponse;
-import lekasv.bek.dto.taskBoard.UpdateTaskBoardRequest;
 import lekasv.bek.model.TaskBoard;
 import org.mapstruct.Mapper;
-import org.mapstruct.MappingTarget;
 
 @Mapper(componentModel = "spring")
 public interface TaskBoardMapper {
